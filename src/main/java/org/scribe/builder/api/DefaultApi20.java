@@ -66,5 +66,13 @@ public abstract class DefaultApi20 implements Api
   {
     return new OAuth20ServiceImpl(this, config);
   }
+  
+  /**
+   * {@inheritDoc}
+   */
+  public void signRequest(Token accessToken, Request request)
+  {
+    request.addQuerystringParameter(OAuthConstants.ACCESS_TOKEN, accessToken.getToken());
+  }
 
 }

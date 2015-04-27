@@ -22,6 +22,7 @@ public class ServiceBuilder
   private Api api;
   private String scope;
   private SignatureType signatureType;
+  private String state;
   private OutputStream debugStream;
   
   /**
@@ -140,6 +141,12 @@ public class ServiceBuilder
     this.signatureType = type;
     return this;
   }
+  
+  public ServiceBuilder state(String state)
+  {
+	  this.state = state;
+	  return this;
+  }
 
   public ServiceBuilder debugStream(OutputStream stream)
   {
@@ -164,6 +171,6 @@ public class ServiceBuilder
     Preconditions.checkNotNull(api, "You must specify a valid api through the provider() method");
     Preconditions.checkEmptyString(apiKey, "You must provide an api key");
     Preconditions.checkEmptyString(apiSecret, "You must provide an api secret");
-    return api.createService(new OAuthConfig(apiKey, apiSecret, callback, signatureType, scope, debugStream));
+    return api.createService(new OAuthConfig(apiKey, apiSecret, callback, signatureType, scope, state, debugStream));
   }
 }

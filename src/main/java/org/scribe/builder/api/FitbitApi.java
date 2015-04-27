@@ -16,6 +16,6 @@ public class FitbitApi extends DefaultApi10a {
 
 	@Override
 	public String getAuthorizationUrl(Token requestToken) {
-		return String.format("https://fitbit.com/oauth/authorize?oauth_token=%s", requestToken.getToken());
+		return String.format("https://fitbit.com/oauth/authorize?display=touch&oauth_token=%s", requestToken.getToken());
 	}
 }
