@@ -15,14 +15,15 @@ public class OAuthConfig
   private final SignatureType signatureType;
   private final String scope;
   private final String state;
+  private final boolean sandbox;
   private final OutputStream debugStream;
   
   public OAuthConfig(String key, String secret)
   {
-    this(key, secret, null, null, null, null, null);
+    this(key, secret, null, null, null, null, false, null);
   }
 
-  public OAuthConfig(String key, String secret, String callback, SignatureType type, String scope, String state, OutputStream stream)
+  public OAuthConfig(String key, String secret, String callback, SignatureType type, String scope, String state, boolean sandbox, OutputStream stream)
   {
     this.apiKey = key;
     this.apiSecret = secret;
@@ -30,6 +31,7 @@ public class OAuthConfig
     this.signatureType = type;
     this.scope = scope;
     this.state = state;
+    this.sandbox = sandbox;
     this.debugStream = stream;
   }
 
@@ -89,5 +91,9 @@ public boolean hasState()
       }
     }
   }
+
+public boolean isSandbox() {
+	return sandbox;
+}
 
 }

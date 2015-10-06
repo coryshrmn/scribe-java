@@ -23,6 +23,7 @@ public class ServiceBuilder
   private String scope;
   private SignatureType signatureType;
   private String state;
+  private boolean sandbox;
   private OutputStream debugStream;
   
   /**
@@ -147,6 +148,12 @@ public class ServiceBuilder
 	  this.state = state;
 	  return this;
   }
+  
+  public ServiceBuilder sandbox(boolean sandbox)
+  {
+	  this.sandbox = sandbox;
+	  return this;
+  }
 
   public ServiceBuilder debugStream(OutputStream stream)
   {
@@ -171,6 +178,6 @@ public class ServiceBuilder
     Preconditions.checkNotNull(api, "You must specify a valid api through the provider() method");
     Preconditions.checkEmptyString(apiKey, "You must provide an api key");
     Preconditions.checkEmptyString(apiSecret, "You must provide an api secret");
-    return api.createService(new OAuthConfig(apiKey, apiSecret, callback, signatureType, scope, state, debugStream));
+    return api.createService(new OAuthConfig(apiKey, apiSecret, callback, signatureType, scope, state, sandbox, debugStream));
   }
 }
