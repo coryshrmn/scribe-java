@@ -48,16 +48,19 @@ public class IHealthApi extends DefaultApi20 {
 		return new AccessTokenExtractor() {
 			  private static final String TOKEN_REGEX = "\"AccessToken\"\\s*:\\s*\"([^\"]+)";
 			  private static final String EMPTY_SECRET = "";
+			  private static final String REFRESH_TOKEN_REGEX = "\"RefreshToken\"\\s*:\\s*\"([^\"]+)";
 
 			  public Token extract(String response)
 			  {
 			    Preconditions.checkEmptyString(response, "Response body is incorrect. Can't extract a token from an empty string");
 
 			    Matcher matcher = Pattern.compile(TOKEN_REGEX).matcher(response);
-			    if (matcher.find())
+			    Matcher matcherRefresh = Pattern.compile(REFRESH_TOKEN_REGEX).matcher(response);
+			    if (matcher.find() && matcherRefresh.find())
 			    {
 			      String token = OAuthEncoder.decode(matcher.group(1));
-			      return new Token(token, EMPTY_SECRET, response);
+			      String refreshToken = OAuthEncoder.decode(matcherRefresh.group(1));
+			      return new Token(token, EMPTY_SECRET, response, refreshToken);
 			    } 
 			    else
 			    {

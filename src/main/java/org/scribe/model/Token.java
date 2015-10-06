@@ -15,6 +15,7 @@ public class Token implements Serializable
   private final String token;
   private final String secret;
   private final String rawResponse;
+  private final String refreshToken;
 
   /**
    * Default constructor
@@ -24,10 +25,15 @@ public class Token implements Serializable
    */
   public Token(String token, String secret)
   {
-    this(token, secret, null);
+    this(token, secret, null, null);
   }
-
+  
   public Token(String token, String secret, String rawResponse)
+  {
+	  this(token, secret, null, rawResponse);
+  }
+  
+  public Token(String token, String secret, String rawResponse, String refreshToken)
   {
     Preconditions.checkNotNull(token, "Token can't be null");
     Preconditions.checkNotNull(secret, "Secret can't be null");
@@ -35,6 +41,7 @@ public class Token implements Serializable
     this.token = token;
     this.secret = secret;
     this.rawResponse = rawResponse;
+    this.refreshToken = refreshToken;
   }
 
   public String getToken()
@@ -46,7 +53,7 @@ public class Token implements Serializable
   {
     return secret;
   }
-
+  
   public String getRawResponse()
   {
     if (rawResponse == null)
@@ -54,6 +61,11 @@ public class Token implements Serializable
       throw new IllegalStateException("This token object was not constructed by scribe and does not have a rawResponse");
     }
     return rawResponse;
+  }
+
+  public String getRefreshToken()
+  {
+	return refreshToken;
   }
 
   @Override
