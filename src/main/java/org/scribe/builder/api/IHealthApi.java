@@ -21,7 +21,8 @@ public class IHealthApi extends DefaultApi20 {
 
 	@Override
 	public String getAccessTokenEndpoint() {
-		return "https://jawbone.com/auth/oauth2/token?grant_type=authorization_code";
+		//TODO doesn't work with sandbox
+		return "https://api.ihealthlabs.com:8443/OpenApiV2/OAuthv2/userauthorization/";
 	}
 	
 	private String urlEncode(String text) {
