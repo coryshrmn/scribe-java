@@ -30,7 +30,7 @@ public class Token implements Serializable
   
   public Token(String token, String secret, String rawResponse)
   {
-	  this(token, secret, null, rawResponse);
+	  this(token, secret, rawResponse, null);
   }
   
   public Token(String token, String secret, String rawResponse, String refreshToken)
