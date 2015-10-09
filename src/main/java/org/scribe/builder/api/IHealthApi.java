@@ -37,11 +37,10 @@ public class IHealthApi extends DefaultApi20 {
 	public String getAuthorizationUrl(OAuthConfig config) {
 		String url = config.isSandbox() ? URL_USERAUTHORIZATION_SANDBOX : URL_USERAUTHORIZATION_PRODUCTION;
 		
-		return String.format(url + "?response_type=code&client_id=%s&APIName=%s&redirect_uri=%s&state=%s",
+		return String.format(url + "?response_type=code&client_id=%s&APIName=%s&redirect_uri=%s",
 					urlEncode(config.getApiKey()),
 					urlEncode(config.getScope()),
-					urlEncode(config.getCallback()),
-					urlEncode(config.getState()));
+					urlEncode(config.getCallback()));
 	}
 	
 	@Override
