@@ -22,7 +22,7 @@ public class IHealthApi extends DefaultApi20 {
 	@Override
 	public String getAccessTokenEndpoint() {
 		//TODO doesn't work with sandbox
-		return "https://api.ihealthlabs.com:8443/OpenApiV2/OAuthv2/userauthorization/";
+		return "https://api.ihealthlabs.com:8443/OpenApiV2/OAuthv2/userauthorization/?grant_type=authorization_code";
 	}
 	
 	private String urlEncode(String text) {
